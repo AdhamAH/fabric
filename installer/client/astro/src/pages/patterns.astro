@@ -1,0 +1,23 @@
+---
+// Imports
+import BaseLayout from "../layouts/BaseLayout.astro";
+import {getPatternName, transformPath} from "../util/get-pattern-name";
+//code
+const patterns =  await Astro.glob('../../../../../patterns/**/system.md')
+---
+<BaseLayout title="Patterns">
+    <h1 class="text-5xl py-10 capitalize">Saved patterns</h1>
+    <div class="grid grid-cols-3 gap-2">
+        {patterns.map(entry =>{
+            const href = transformPath(entry.file)
+            const title = getPatternName(transformPath(entry.file))
+            return(
+                <div class="p-4">
+                    <a class="capitalize text-ellipsis overflow-hidden" href={href}>
+                        {title} </a>
+                </div>
+            )
+            })
+        }
+    </div>
+</BaseLayout>
