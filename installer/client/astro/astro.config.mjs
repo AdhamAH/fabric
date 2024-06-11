@@ -8,7 +8,7 @@ import node from "@astrojs/node";
 export default defineConfig({
   // Enable Vue to support Vue components.
   integrations: [vue(), tailwind()],
-  output: 'hybrid',
+  output: 'server',
   adapter: node({
     mode: "standalone"
   })

@@ -2,10 +2,8 @@
   defineProps<{data: string}>();
 </script>
 
-
 <template>
-  <span class="tooltip" :data-tip="data">
-    <button>
+  <span class="tooltip cursor-pointer" :data-tip="data">
         <svg
             aria-label="hidden"
             xmlns="http://www.w3.org/2000/svg"
@@ -22,6 +20,5 @@
             <path d="M12 8h.01"/>
         </svg>
         <span class="sr-only">{{ data }}</span>
-    </button>
 </span>
 </template>

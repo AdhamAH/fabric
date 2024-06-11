@@ -1,37 +1,20 @@
 ---
 // Imports
 import BaseLayout from '../../layouts/BaseLayout.astro'
-import InfoSvg from '../../components/InfoSvg.vue'
 import EditInstruction from '../../components/EditInstrucions.vue'
 import {getPatternName} from "../../util/get-pattern-name";
 import {getModelsList, openai} from "../../util/openai";
-
+//Logic
 export const prerender = false
 const {slug} = Astro.params
 const allModels = await getModelsList()
 const models = allModels.filter(model => model.includes('gpt'))
 const patterns = await Astro.glob('../../../../../../patterns/**/system.md')
 const selected = patterns.filter(pattern=>pattern.file.includes(slug!))
-const Content = selected[0].Content
 const rawContent = selected[0].rawContent();
-
-    if(Astro.request.method === 'POST'){
-        const formData = await Astro.request.formData()
-        const model = formData.get('model')
-        const instructions = formData.get('instruction')
-        const prompt = formData.get('prompt') as string
-        const response = await openai.chat.completions.create({
-            messages: [{"role": "system", "content": instructions as string},
-                {"role": "user", "content": prompt as string},],
-            model: model as string,
-        })
-        console.log(response.choices[0].message.content)
-
-    }
 
 ---
 <BaseLayout title={getPatternName(slug!)}>
-    <h1 class="capitalize text-5xl mb-7">{getPatternName(slug!)}</h1>
+    <h1 class="capitalize text-5xl my-10">{getPatternName(slug!)}</h1>
     <EditInstruction client:idle markdownContent={rawContent} models={models}/>
 </BaseLayout>
-<!--end SSR generation-->

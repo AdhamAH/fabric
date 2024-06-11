@@ -17,6 +17,7 @@
     "@nanostores/persistent": "^0.10.1",
     "@nanostores/vue": "^0.10.0",
     "astro": "^4.8.4",
+    "axios": "^1.7.2",
     "classnames": "^2.5.1",
     "markdown-it": "^14.1.0",
     "nanostores": "^0.10.3",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.13",
     "@types/markdown-it": "^14.1.1",
+    "@types/node": "^20.14.2",
     "daisyui": "^4.11.1"
   }
 }
